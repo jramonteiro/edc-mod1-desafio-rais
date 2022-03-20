@@ -82,36 +82,36 @@ def handler(event, context):
                 
                 StepConcurrencyLevel=1,
                 
-                Steps=[{
-                    'Name': 'Delta Insert do ENEM',
-                    'ActionOnFailure': 'CONTINUE',
-                    'HadoopJarStep': {
-                        'Jar': 'command-runner.jar',
-                        'Args': ['spark-submit',
-                                 '--packages', 'io.delta:delta-core_2.12:1.0.0', 
-                                 '--conf', 'spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension', 
-                                 '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
-                                 '--master', 'yarn',
-                                 '--deploy-mode', 'cluster',
-                                 's3://datalake-jeff-igti-edc-tf/emr-code/pyspark/01_delta_spark_insert.py'
-                                 ]
-                    }
-                },
-                {
-                    'Name': 'Simulacao e UPSERT do ENEM',
-                    'ActionOnFailure': 'CONTINUE',
-                    'HadoopJarStep': {
-                        'Jar': 'command-runner.jar',
-                        'Args': ['spark-submit',
-                                 '--packages', 'io.delta:delta-core_2.12:1.0.0', 
-                                 '--conf', 'spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension', 
-                                 '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
-                                 '--master', 'yarn',
-                                 '--deploy-mode', 'cluster',
-                                 's3://datalake-jeff-igti-edc-tf/emr-code/pyspark/02_delta_spark_upsert.py'
-                                 ]
-                    }
-                }],
+                # Steps=[{
+                #     'Name': 'Delta Insert do ENEM',
+                #     'ActionOnFailure': 'CONTINUE',
+                #     'HadoopJarStep': {
+                #         'Jar': 'command-runner.jar',
+                #         'Args': ['spark-submit',
+                #                  '--packages', 'io.delta:delta-core_2.12:1.0.0', 
+                #                  '--conf', 'spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension', 
+                #                  '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
+                #                  '--master', 'yarn',
+                #                  '--deploy-mode', 'cluster',
+                #                  's3://datalake-jeff-igti-edc-tf/emr-code/pyspark/01_delta_spark_insert.py'
+                #                  ]
+                #     }
+                # },
+                # {
+                #     'Name': 'Simulacao e UPSERT do ENEM',
+                #     'ActionOnFailure': 'CONTINUE',
+                #     'HadoopJarStep': {
+                #         'Jar': 'command-runner.jar',
+                #         'Args': ['spark-submit',
+                #                  '--packages', 'io.delta:delta-core_2.12:1.0.0', 
+                #                  '--conf', 'spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension', 
+                #                  '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
+                #                  '--master', 'yarn',
+                #                  '--deploy-mode', 'cluster',
+                #                  's3://datalake-jeff-igti-edc-tf/emr-code/pyspark/02_delta_spark_upsert.py'
+                #                  ]
+                #     }
+                # }],
             )
     
     return {
